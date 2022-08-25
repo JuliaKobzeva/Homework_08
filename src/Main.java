@@ -4,38 +4,46 @@ import java.util.Arrays;
 public class Main {
 
     //Метод к заданию 1
-    public static void leapYear (int number){
-        int Year = number;
-        if (Year % 4 == 0 && Year % 100 > 0) {
-            System.out.println( Year + " год високосный");
-        } else if (Year % 400 == 0) {
-            System.out.println( Year + " год високосный");
-        } else if (Year % 4 > 0) {
-            System.out.println( Year + " год не високосный");
+    private static void getToKnowLeapYear (int year){
+
+        if (year % 4 == 0 && year % 100 > 0 || year % 400 == 0) {
+            System.out.println( year + " год високосный");
+        } else {
+            System.out.println( year + " год не високосный");
         }
     }
 
     //Методы к заданию 2
 
-    public static int getClientOS (String name){
+    private static int getClientOS (String name){
         if (name.equals("iOS")) {
             return 0;
         } else {
             return 1;
         }
+
     }
 
-    public static void clientDevice (int number2){
-        int DeviceYear = number2;
-        if (DeviceYear <= 2015) {
-            System.out.println("Установите облегченную версию приложения");
+    private static void getClientDevice (int deviceYear){
+
+        int clientOS = getClientOS("iOS");
+
+        if (clientOS == 1 && deviceYear >= 2015) {
+            System.out.println("Установите версию приложения для Android по ссылке");
+        } else if (clientOS == 1 && deviceYear <= 2015) {
+            System.out.println("Установите облегченную версию приложения для Android по ссылке");
+        } else if (clientOS == 0 && deviceYear >= 2015) {
+            System.out.println("Установите версию приложения для iOS по ссылке");
+        } else {
+            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
         }
+
     }
 
     //Метод к заданию 3
 
-    public static int delivery (int number3) {
-        int deliveryDistance = number3;
+    private static int calculateDelivery (int deliveryDistance) {
+
         int day = 1;
 
         if (deliveryDistance > 20 && deliveryDistance <= 60) {
@@ -51,9 +59,9 @@ public class Main {
 
     //Метод к заданию 4
 
-    public static void numberReverse (int [] arr2){
+    private static void getNumberReverse (int [] arr2){
 
-        for(int i = 4; i >= 0; i-- ){
+        for(int i = arr2.length-1; i >= 0; i-- ){
             System.out.print(arr2 [i]);
         }
         System.out.println();
@@ -61,13 +69,13 @@ public class Main {
 
     //Метод к заданию 5
 
-    public static void doubleLetters (String name1){
+    private static void getToKnowDoubleLetters (String name1){
 
-        char[] LE = name1.toCharArray();
+        char[] letters2 = name1.toCharArray();
         for (int i = 0; i < name1.length(); i++) {
             for (int j = i + 1; j < name1.length(); j++) {
-                if (LE[i] == LE[j]) {
-                    System.out.print(LE[j] + " ");
+                if (letters2[i] == letters2[j]) {
+                    System.out.print(letters2[j] + " ");
                     break;
                 }
             }
@@ -77,7 +85,7 @@ public class Main {
 
     //Методы к заданию 6
 
-    public static int[] generateRandomArray() {
+    private static int[] generateRandomArray() {
         java.util.Random random = new java.util.Random();
         int[] arr = new int[30];
         for (int i = 0; i < arr.length; i++) {
@@ -86,17 +94,17 @@ public class Main {
         return arr;
     }
 
-    public static void getToKnowAverageExpense (int [] nnn){
+    private static void getToKnowAverageExpense (int [] nnn){
 
         int total = getToKnowSum (nnn);
 
-        double AverageExpense = total / 30;
+        double averageExpense = total* 1.0/ 30;
 
-        System.out.println("Средняя сумма трат за месяц составила " + AverageExpense + " рублей.");
+        System.out.println("Средняя сумма трат за месяц составила " + averageExpense + " рублей.");
 
     }
 
-    public static int getToKnowSum (int [] nnn2){
+    private static int getToKnowSum (int [] nnn2){
 
         int sum = 0;
 
@@ -110,35 +118,28 @@ public class Main {
     public static void main(String[] args) {
         //Задание 1
         int currentYear = LocalDate.now().getYear();
-        leapYear(currentYear);
-        leapYear(2000);
+        getToKnowLeapYear(currentYear);
+        getToKnowLeapYear(2000);
 
         //Задание 2
 
-        int clientOS = getClientOS ("iOS");
-        clientDevice (currentYear);
-
-        if (clientOS == 1) {
-            System.out.println("Установите версию приложения для Android по ссылке");
-        } else if (clientOS == 0) {
-            System.out.println("Установите версию приложения для iOS по ссылке");
-        }
+        getClientDevice (currentYear);
 
         //Задание 3
 
-        delivery(95);
+        calculateDelivery (95);
 
         //Задание 4
 
         int[] number4 = {3,2,1,6,5};
 
-        numberReverse (number4);
+        getNumberReverse (number4);
 
         //Задание 5
 
         String Letters = "aabccddefgghiijjkk";
 
-        doubleLetters (Letters);
+        getToKnowDoubleLetters (Letters);
 
         //Задание 6
 
